@@ -112,7 +112,7 @@ export default{
                                 v-model="form.modality"
                                 class="min-w-96 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                             >
-                                <option value="" disabled>Seleccione una modalidad</option>
+                                <option value="" selected hidden="">{{form.modality.toUpperCase()}}</option>
                                 <option
                                     v-for="mod in modalities"
                                     :key="mod.value"
