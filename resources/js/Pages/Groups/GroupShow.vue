@@ -2,9 +2,10 @@
 import AppLayout from "@/Layouts/AppLayout.vue";
 import Welcome from "@/Components/Welcome.vue";
 import axios from "axios";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
 
 export default {
-    components: {Welcome, AppLayout},
+    components: {Welcome, AppLayout, SecondaryButton},
     data() {
       return {
           students: [],
@@ -66,6 +67,9 @@ export default {
                             <strong>Período:</strong>
                             <p>{{ group.period }}</p>
                         </div>
+                        <a :href="route('group.edit', { 'group': group.id })">
+                            <secondary-button>Editar</secondary-button>
+                        </a>
                     </div>
                 </div>
 

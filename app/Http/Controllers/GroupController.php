@@ -84,13 +84,11 @@ class GroupController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $groupId)
+    public function update(Request $request, $group)
     {
-        $group = Group::findOrFail($groupId);
+        $group = Group::findOrFail($group);
 
         $request->validate([
-            'educationalExperienceId' => 'required|numeric',
-            'teacherId' => 'required|numeric',
             'name' => 'required|string|max:45',
             'shift' => 'required|string|max:12',
             'period' => 'required|string|max:45'
@@ -98,8 +96,8 @@ class GroupController extends Controller
 
 
         $group->update([
-            'educational_experience_id' => $request->educationalExperienceId,
-            'teacher_id' => $request->teacherId,
+            'educational_experience_id' => $group->educational_experience_id,
+            'teacher_id' => $group->teacher_id,
             'name' => $request->name,
             'shift' => $request->shift,
             'period' => $request->period,

@@ -6,7 +6,7 @@ import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
 
-export default {
+export default{
     components: {
     AppLayout,
     InputLabel,
@@ -22,26 +22,35 @@ export default {
   },
   props: {
     auth: Object,
-    educational_experience: Object, // Expect the educationalExperience to be passed as a prop
+    group: Object,
   },
   setup(props) {
     const form = useForm({
-        educationalExperienceId: props.educational_experience.id,
-        name: '',
-        shift: '',
-        period: '',
+        educationalExperienceId: props.group.educationalExperienceId,
+        name: props.group.name,
+        shift: props.group.shift,
+        period: props.group.period,
     });
 
     const shifts = [
-      { value: 'Matutino', label: 'Matutino' },
-      { value: 'Vespertino', label: 'Vespertino' },
+      { value: 'Matutino', label: 'MATUTINO' },
+      { value: 'Vespertino', label: 'VESPERTINO' },
     ];
 
     const submit = () => {
-        form.post(route('educational-experiences.groups.store', { educational_experience: props.educational_experience }), {
-            onFinish: () => form.reset(),
-        });
-    };
+    form.transform((data) => ({
+        ...data,
+        educational_experience_id: data.educationalExperienceId // Cambia el nombre
+    })).patch(route('groups.update', {group: props.group.id}), {
+        onFinish: () => {
+            form.reset();
+            window.location.href = route('groups.show', {group: props.group.id})
+        },
+        onError: (errors) => {
+            console.error('Errores de validación:', errors);
+        }
+    });
+};
 
     return {
       form,
@@ -50,13 +59,12 @@ export default {
     };
   }
 }
-
 </script>
 
 <template>
     <AppLayout>
         <template #header>
-            Crear grupo
+            Editar grupo
         </template>
 
         <form @submit.prevent="submit">
