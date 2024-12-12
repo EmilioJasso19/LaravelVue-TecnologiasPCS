@@ -52,7 +52,7 @@ const logout = () => {
                                     Inicio
                                 </NavLink>
                                 <NavLink :href="route('educational-experience.create')" :active="route().current('educational-experience.create')">
-                                    Experiencias educativas
+                                    Crear experiencia educativa
                                 </NavLink>
                             </div>
                         </div>

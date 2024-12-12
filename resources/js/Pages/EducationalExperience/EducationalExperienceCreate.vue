@@ -26,12 +26,14 @@ const modalities = [
     { value: 'VIRTUAL', label: 'VIRTUAL' },
 ];
 
-// Función para enviar el formulario
 const submit = () => {
     form.post(route('educational-experiences.store'), {
-        onFinish: () => form.reset(), // Reinicia la descripción después del envío
+        onFinish: () => {
+            window.location.href = route('dashboard')
+        },
     });
 };
+
 </script>
 
 

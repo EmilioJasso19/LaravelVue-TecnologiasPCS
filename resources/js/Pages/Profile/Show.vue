@@ -14,10 +14,10 @@ defineProps({
 </script>
 
 <template>
-    <AppLayout title="Profile">
+    <AppLayout title="Perfil">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Profile
+                Perfil
             </h2>
         </template>
 
@@ -29,7 +29,7 @@ defineProps({
                     <SectionBorder />
                 </div>
 
-                <div v-if="$page.props.jetstream.canUpdatePassword">
+                <!-- <div v-if="$page.props.jetstream.canUpdatePassword">
                     <UpdatePasswordForm class="mt-10 sm:mt-0" />
 
                     <SectionBorder />
@@ -50,7 +50,7 @@ defineProps({
                     <SectionBorder />
 
                     <DeleteUserForm class="mt-10 sm:mt-0" />
-                </template>
+                </template> -->
             </div>
         </div>
     </AppLayout>

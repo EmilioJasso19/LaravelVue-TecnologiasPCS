@@ -46,7 +46,9 @@ export default{
 
         const submit = () => {
             form.patch(`/api/educational-experiences/${props.educationalExperience.id}`, {
-                onFinish: () => form.reset(),
+                onFinish: () => {
+                    window.location.href = route('dashboard')
+                },
             });
         };
 
@@ -122,6 +124,17 @@ export default{
                                 </option>
                             </select>
                             <InputError class="mt-2" :message="form.errors.modality" />
+                        </div>
+
+                        <div class="mt-4">
+                            <InputLabel for="description" value="Descripción" />
+                            <TextInput
+                                id="description"
+                                v-model="form.description"
+                                type="text"
+                                class="mt-1 block w-full"
+                            />
+                            <InputError class="mt-2" :message="form.errors.description" />
                         </div>
 
                         <div class="flex items-center justify-center mt-4">

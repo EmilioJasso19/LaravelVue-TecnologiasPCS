@@ -5,6 +5,7 @@ import TextInput from '@/Components/TextInput.vue';
 import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
+import { onMounted } from 'vue';
 
 export default {
     components: {
@@ -22,7 +23,7 @@ export default {
   },
   props: {
     auth: Object,
-    educational_experience: Object, // Expect the educationalExperience to be passed as a prop
+    educational_experience: Object,
   },
   setup(props) {
     const form = useForm({
@@ -38,10 +39,16 @@ export default {
     ];
 
     const submit = () => {
-        form.post(route('educational-experiences.groups.store', { educational_experience: props.educational_experience }), {
-            onFinish: () => form.reset(),
-        });
-    };
+    form.post(route('educational-experiences.groups.store', { 
+        educational_experience: props.educational_experience 
+    }), {
+        onFinish: () => {
+            window.location.href = route('groups.list', {
+                educationalExperience: props.educational_experience.id
+            })
+        },
+    });
+};
 
     return {
       form,
