@@ -69,13 +69,13 @@ export default {
                             <p>{{ group.period }}</p>
                         </div>
                         <div class="col-span-2 flex justify-end space-x-2">
-            <a :href="route('group.edit', { 'group': group.id })">
-                <secondary-button>Editar</secondary-button>
-            </a>
-            <a :href="route('group.edit', { 'group': group.id })">
-                <tertiary-button>Eliminar</tertiary-button>
-            </a>
-        </div>
+                            <a :href="route('group.edit', { 'group': group.id })">
+                                <secondary-button>Editar</secondary-button>
+                            </a>
+                            <a :href="route('group.edit', { 'group': group.id })">
+                                <tertiary-button>Eliminar</tertiary-button>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
