@@ -3,9 +3,10 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import Welcome from "@/Components/Welcome.vue";
 import axios from "axios";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
+import TertiaryButton from "@/Components/TertiaryButton.vue";
 
 export default {
-    components: {Welcome, AppLayout, SecondaryButton},
+    components: {Welcome, AppLayout, SecondaryButton, TertiaryButton},
     data() {
       return {
           students: [],
@@ -67,9 +68,14 @@ export default {
                             <strong>Período:</strong>
                             <p>{{ group.period }}</p>
                         </div>
-                        <a :href="route('group.edit', { 'group': group.id })">
-                            <secondary-button>Editar</secondary-button>
-                        </a>
+                        <div class="col-span-2 flex justify-end space-x-2">
+            <a :href="route('group.edit', { 'group': group.id })">
+                <secondary-button>Editar</secondary-button>
+            </a>
+            <a :href="route('group.edit', { 'group': group.id })">
+                <tertiary-button>Eliminar</tertiary-button>
+            </a>
+        </div>
                     </div>
                 </div>
 
