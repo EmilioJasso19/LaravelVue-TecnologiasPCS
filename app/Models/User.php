@@ -74,8 +74,12 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function enrollment(){
-        return $this->BelongsTo(Enrollment::class, 'id', 'student_id');
+    public function enrollments(){
+        return $this->hasMany(Enrollment::class,  'student_id', 'id');
     }
 
+    public function groups()
+    {
+        return $this->hasManyThrough(Group::class, Enrollment::class, 'student_id', 'id', 'id','group_id');
+    }
 }

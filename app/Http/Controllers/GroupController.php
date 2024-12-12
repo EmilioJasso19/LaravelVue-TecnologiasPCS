@@ -138,9 +138,17 @@ class GroupController extends Controller
     }
 
     public function studentsByGroup($groupId){
-        $students = User::join('enrollments', 'users.id', '=', 'enrollments.student_id')
-            ->where('enrollments.group_id', $groupId)
-            ->select('users.*')->get();
+//        $students = User::join('enrollments', 'users.id', '=', 'enrollments.student_id')
+//            ->where('enrollments.group_id', $groupId)
+//            ->select('users.*')->get();
+
+//        $group = Group::findOrFail($groupId);
+//        $students = $group->students;
+
+
+        $students = User::whereHas('enrollments', function($query) use ($groupId) {
+            $query->where('group_id', $groupId);
+        })->get();
 
         return response()->json($students, 201);
 
