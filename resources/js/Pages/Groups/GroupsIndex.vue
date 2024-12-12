@@ -2,9 +2,10 @@
 import AppLayout from "@/Layouts/AppLayout.vue";
 import Welcome from "@/Components/Welcome.vue";
 import SectionTitle from "@/Components/SectionTitle.vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
 
 export default {
-    components: { SectionTitle, Welcome, AppLayout },
+    components: { SectionTitle, Welcome, AppLayout, SecondaryButton },
     props: {
         educationalExperience: {
             type: Object,
@@ -57,6 +58,9 @@ export default {
                         <h3 class="text-2xl font-medium text-gray-900">
                             Listado de grupos
                         </h3>
+                        <a :href="route('group.create', { 'educationalExperience': educationalExperience.id })">
+                            <secondary-button>Crear</secondary-button>
+                        </a>
                     </div>
 
                     <div class="bg-gray-200 bg-opacity-25 p-6 lg:p-8">

@@ -44,7 +44,7 @@ class EducationalExperienceController extends Controller
             'description' => 'nullable|string'
         ]);
 
-        $educationalExperience = EducationalExperience::create([
+        EducationalExperience::create([
             'nrc' => $request->nrc,
             'name' => $request->name,
             'modality' => $request->modality,
@@ -56,7 +56,6 @@ class EducationalExperienceController extends Controller
 
         return response()->json([
             'message' => "Experiencia educativa creada exitosamente",
-            'data' => $educationalExperience,
         ], 201);
     }
 
@@ -113,7 +112,10 @@ class EducationalExperienceController extends Controller
      */
     public function destroy ($educationalExperienceId)
     {
+
         $educationalExperience = EducationalExperience::findOrFail($educationalExperienceId);
+        $educationalExperience->deleted_at = Carbon::now();
+        $educationalExperience->save();
         $educationalExperience->delete();
         return response()->json([
             'message' => 'Experiencia educativa eliminada exitosamente.'

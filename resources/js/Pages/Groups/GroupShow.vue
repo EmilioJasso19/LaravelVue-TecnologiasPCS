@@ -2,14 +2,17 @@
 import AppLayout from "@/Layouts/AppLayout.vue";
 import Welcome from "@/Components/Welcome.vue";
 import axios from "axios";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
+import TertiaryButton from "@/Components/TertiaryButton.vue";
 
 export default {
-    components: {Welcome, AppLayout},
+    components: {Welcome, AppLayout, SecondaryButton, TertiaryButton},
     data() {
       return {
           students: [],
           loading: false,
           error: null,
+          errorDeleting: null,
       }
     },
     props: {
@@ -37,7 +40,20 @@ export default {
             } finally {
                 this.loading = false;
             }
-        }
+        },
+        async deleteGroup(group) {
+            this.errorDeleting = null
+
+            try {
+                const response = await axios.delete(route('groups.destroy', {group: group}));
+                console.log(response)
+                window.location.href = route('groups.list', {educationalExperience: this.educationalExperience.id})
+            } catch (error) {
+                this.errorDeleting = error.response?.data?.message ||
+                    error;
+                console.error('Error al eliminar el grupo:', error);
+            }
+        },
     }
 };
 </script>
@@ -47,6 +63,10 @@ export default {
         <template #header>
             {{ group.name }}
         </template>
+
+        <div>
+            {{errorDeleting}}
+        </div>
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
@@ -66,6 +86,16 @@ export default {
                             <strong>Período:</strong>
                             <p>{{ group.period }}</p>
                         </div>
+                        <div class="col-span-2 flex justify-end space-x-2">
+            <a :href="route('group.edit', { 'group': group.id })">
+                <secondary-button>Editar</secondary-button>
+            </a>
+            <a
+                href="#"
+                @click.prevent="deleteGroup(group.id)">
+                <tertiary-button>Eliminar</tertiary-button>
+            </a>
+        </div>
                     </div>
                 </div>
 

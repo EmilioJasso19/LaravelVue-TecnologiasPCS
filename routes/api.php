@@ -27,4 +27,7 @@ Route::resource('educational-experiences', EducationalExperienceController::clas
 Route::resource('educational-experiences.groups', GroupController::class)->shallow();
 Route::get('groups/{group}/students', [GroupController::class, 'studentsByGroup'])->name('groups.studentsByGroup');
 Route::resource('enrollments', EnrollmentController::class);
+Route::patch('groups/{group}', [GroupController::class, 'update'])->name('groups.update');
+
+
 

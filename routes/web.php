@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\GroupController;
 use App\Models\EducationalExperience;
+use App\Models\Group;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -37,13 +38,36 @@ Route::middleware([
     })->name('dashboard');
 
     Route::get('/educational-experience/{educationalExperience}/groups', function (Request $request, $educationalExperience) {
-
         return Inertia::render('Groups/GroupsIndex', [
             'educationalExperience' => EducationalExperience::find($educationalExperience),
         ]);
     })->name('groups.list');
 
+    Route::get('/educational-experience/create', function () {
+        return Inertia::render('EducationalExperience/EducationalExperienceCreate');
+    })->name('educational-experience.create');
+
+    Route::get('/educational-experiences/{educationalExperience}/edit', function ($educationalExperience) {
+        $educationalExperience = EducationalExperience::findOrFail($educationalExperience);
+        return Inertia::render('EducationalExperience/EducationalExperienceEdit', ['educationalExperience' => $educationalExperience]);
+    })->name('educational-experience.edit');
+
+    Route::get('/educational-experiences/{educationalExperience}/delete', function () {
+        return Inertia::render('EducationalExperience/EducationalExperienceDelete');
+    })->name('educational-experience.delete');
+
     Route::get('/groups/{group}', [GroupController::class, 'show'])->name('groups.show');
+    Route::patch('/groups/{group}', [GroupController::class, 'update'])->name('groups.update'); // la agregue cuando me lo dijiste
+
+    Route::get('/educational-experiences/{educationalExperience}/groups/create', function ($educationalExperience) {
+        $educationalExperience = EducationalExperience::findOrFail($educationalExperience);
+        return Inertia::render('Groups/GroupCreate', ['educational_experience' => $educationalExperience]);
+    })->name('group.create');
+
+    Route::get('/groups/{group}/edit', function ($group) {
+        $group = Group::findOrFail($group);
+        return Inertia::render('Groups/GroupEdit', ['group' => $group]);
+    })->name('group.edit');
 
 });
     Route::get('/home', function () {
