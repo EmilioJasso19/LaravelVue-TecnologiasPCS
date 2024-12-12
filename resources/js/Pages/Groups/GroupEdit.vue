@@ -67,7 +67,15 @@ export default{
             Editar grupo
         </template>
 
-        <form @submit.prevent="submit">
+        <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                <div class="p-6 lg:p-8 bg-white border-b border-gray-200 flex justify-between">
+                    <h3 class="text-2xl font-medium text-gray-900">
+                        Editar grupo
+                    </h3>
+                </div>
+        <form @submit.prevent="submit" class="py-12 px-64 flex flex-col">
             <div>
                 <InputLabel for="name" value="Nombre" />
                 <TextInput
@@ -113,7 +121,10 @@ export default{
                 >
                     Guardar
                 </PrimaryButton>
+                </div>
+                </form>
             </div>
-        </form>
-    </AppLayout>
+        </div>
+    </div>
+</AppLayout>
 </template>
