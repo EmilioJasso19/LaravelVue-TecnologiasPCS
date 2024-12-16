@@ -10,7 +10,18 @@ use Illuminate\Support\Facades\Auth;
 class EducationalExperienceController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *     path="/api/educational-experiences",
+     *     summary="Mostrar experiencias educativas",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Mostrar todos las experiencias educativas."
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
      */
     public function index()
     {
@@ -23,7 +34,22 @@ class EducationalExperienceController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * @OA\Get(
+     *     path="/api/educational-experiences/create",
+     *     summary="Mostrar formulario para crear una nueva experiencia educativa",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Retorna los programas educativos disponibles medidante un arreglo en el modelo.",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(type="string")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
      */
     public function create()
     {
@@ -32,7 +58,32 @@ class EducationalExperienceController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @OA\Post(
+     *     path="/api/educational-experiences",
+     *     summary="Crear una nueva experiencia educativa",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"nrc","name","modality","educativeProgram"},
+     *             @OA\Property(property="nrc", type="string", maxLength=5),
+     *             @OA\Property(property="name", type="string"),
+     *             @OA\Property(property="modality", type="string"),
+     *             @OA\Property(property="educativeProgram", type="integer"),
+     *             @OA\Property(property="description", type="string", nullable=true)
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Experiencia educativa creada exitosamente",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
      */
     public function store(Request $request)
     {
@@ -60,7 +111,24 @@ class EducationalExperienceController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     *     path="/api/educational-experiences/{id}",
+     *     summary="Mostrar una experiencia educativa",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Retorna los detalles de una experiencia educativa.",
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
      */
     public function show( $educationalExperience)
     {
@@ -71,7 +139,24 @@ class EducationalExperienceController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * @OA\Get(
+     *     path="/api/educational-experiences/{id}/edit",
+     *     summary="Mostrar formulario para editar una experiencia educativa",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Retorna los detalles de la experiencia educativa seleccionada para su edición.",
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
      */
     public function edit( $educationalExperienceId)
     {
@@ -80,7 +165,37 @@ class EducationalExperienceController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @OA\Put(
+     *     path="/api/educational-experiences/{id}",
+     *     summary="Actualizar una experiencia educativa",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"nrc","name","modality"},
+     *             @OA\Property(property="nrc", type="string", maxLength=5),
+     *             @OA\Property(property="name", type="string"),
+     *             @OA\Property(property="modality", type="string"),
+     *             @OA\Property(property="description", type="string", nullable=true)
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Experiencia educativa actualizada exitosamente",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string"),
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
      */
     public function update(Request $request,  $educationalExperience)
     {
@@ -108,7 +223,27 @@ class EducationalExperienceController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     *     path="/api/educational-experiences/{id}",
+     *     summary="Eliminar una experiencia educativa",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Experiencia educativa eliminada exitosamente",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
      */
     public function destroy ($educationalExperienceId)
     {

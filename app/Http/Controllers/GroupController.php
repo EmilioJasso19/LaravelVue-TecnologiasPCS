@@ -13,7 +13,25 @@ use Inertia\Inertia;
 class GroupController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *     path="/api/educational-experiences/{educationalExperience}/groups",
+     *     summary="Mostrar todos los grupos de una experiencia educativa",
+     *     @OA\Parameter(
+     *         name="educationalExperience",
+     *         in="path",
+     *         description="ID de la experiencia educativa",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Mostrar todos los grupos de la experiencia educativa"
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error"
+     *     )
+     * )
      */
     public function index($educationalExperience)
     {
@@ -23,7 +41,25 @@ class GroupController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * @OA\Get(
+     *     path="/api/educational-experiences/{educationalExperience}/groups/create",
+     *     summary="Mostrar los detalles de la experiencia educativa para crear un grupo",
+     *     @OA\Parameter(
+     *         name="educationalExperience",
+     *         in="path",
+     *         description="ID de la experiencia educativa",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Detalles de la experiencia educativa"
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error"
+     *     )
+     * )
      */
     public function create($educationalExperience)
     {
@@ -32,7 +68,34 @@ class GroupController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @OA\Post(
+     *     path="/api/educational-experiences/{educationalExperience}/groups",
+     *     summary="Crear un nuevo grupo en una experiencia educativa",
+     *     @OA\Parameter(
+     *         name="educationalExperience",
+     *         in="path",
+     *         description="ID de la experiencia educativa",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="name", type="string", description="Nombre del grupo"),
+     *             @OA\Property(property="shift", type="string", description="Turno del grupo"),
+     *             @OA\Property(property="period", type="string", description="Periodo del grupo")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Grupo creado exitosamente"
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error"
+     *     )
+     * )
      */
     public function store(Request $request, $teacherId)
     {
@@ -60,7 +123,32 @@ class GroupController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     *     path="/api/educational-experiences/{educationalExperience}/groups/{groupId}",
+     *     summary="Mostrar un grupo por su ID",
+     *     @OA\Parameter(
+     *         name="educationalExperience",
+     *         in="path",
+     *         description="ID de la experiencia educativa",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Parameter(
+     *         name="groupId",
+     *         in="path",
+     *         description="ID del grupo",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Detalles del grupo"
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error"
+     *     )
+     * )
      */
     public function show($groupId)
     {
@@ -82,7 +170,41 @@ class GroupController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @OA\Put(
+     *     path="/api/educational-experiences/{educationalExperience}/groups/{groupId}",
+     *     summary="Actualizar un grupo",
+     *     @OA\Parameter(
+     *         name="educationalExperience",
+     *         in="path",
+     *         description="ID de la experiencia educativa",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Parameter(
+     *         name="groupId",
+     *         in="path",
+     *         description="ID del grupo",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="name", type="string", description="Nombre del grupo"),
+     *             @OA\Property(property="shift", type="string", description="Turno del grupo"),
+     *             @OA\Property(property="period", type="string", description="Periodo del grupo")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Grupo actualizado exitosamente"
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error"
+     *     )
+     * )
      */
     public function update(Request $request, $group)
     {
@@ -113,7 +235,32 @@ class GroupController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     *     path="/api/educational-experiences/{educationalExperience}/groups/{groupId}",
+     *     summary="Eliminar un grupo",
+     *     @OA\Parameter(
+     *         name="educationalExperience",
+     *         in="path",
+     *         description="ID de la experiencia educativa",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Parameter(
+     *         name="groupId",
+     *         in="path",
+     *         description="ID del grupo",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Grupo eliminado exitosamente"
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error"
+     *     )
+     * )
      */
     public function destroy($groupId)
     {
@@ -133,6 +280,35 @@ class GroupController extends Controller
         return response()->json($groups, 201);
     }
 
+
+    /**
+     * @OA\Get(
+     *     path="/api/educational-experiences/{educationalExperience}/groups/{groupId}/students",
+     *     summary="Obtener los estudiantes de un grupo",
+     *     @OA\Parameter(
+     *         name="educationalExperience",
+     *         in="path",
+     *         description="ID de la experiencia educativa",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Parameter(
+     *         name="groupId",
+     *         in="path",
+     *         description="ID del grupo",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Listado de estudiantes en el grupo"
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error"
+     *     )
+     * )
+     */
     public function studentsByGroup($groupId){
 //        $students = User::join('enrollments', 'users.id', '=', 'enrollments.student_id')
 //            ->where('enrollments.group_id', $groupId)
@@ -140,7 +316,6 @@ class GroupController extends Controller
 
 //        $group = Group::findOrFail($groupId);
 //        $students = $group->students;
-
 
         $students = User::whereHas('enrollments', function($query) use ($groupId) {
             $query->where('group_id', $groupId);

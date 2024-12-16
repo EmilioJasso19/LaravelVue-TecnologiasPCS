@@ -1,0 +1,753 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Eplus v 0.0.1",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000"
+        }
+    ],
+    "paths": {
+        "/api/educational-experiences": {
+            "get": {
+                "summary": "Mostrar experiencias educativas",
+                "operationId": "b855d2b6b4ae361d0d9fd348f632e646",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos las experiencias educativas."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            },
+            "post": {
+                "summary": "Crear una nueva experiencia educativa",
+                "operationId": "44f612494e2a6542c97926e1b58ce0e3",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nrc",
+                                    "name",
+                                    "modality",
+                                    "educativeProgram"
+                                ],
+                                "properties": {
+                                    "nrc": {
+                                        "type": "string",
+                                        "maxLength": 5
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "modality": {
+                                        "type": "string"
+                                    },
+                                    "educativeProgram": {
+                                        "type": "integer"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Experiencia educativa creada exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        },
+        "/api/educational-experiences/create": {
+            "get": {
+                "summary": "Mostrar formulario para crear una nueva experiencia educativa",
+                "operationId": "5c07719bacf25ae1fd51f7b3ce5fcad8",
+                "responses": {
+                    "200": {
+                        "description": "Retorna los programas educativos disponibles medidante un arreglo en el modelo.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        },
+        "/api/educational-experiences/{id}": {
+            "get": {
+                "summary": "Mostrar una experiencia educativa",
+                "operationId": "9aaa5d57b2f23ad040e7f960bcdbf353",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna los detalles de una experiencia educativa."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            },
+            "put": {
+                "summary": "Actualizar una experiencia educativa",
+                "operationId": "5fabbf3f276e18f832a2d5a299b601cf",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nrc",
+                                    "name",
+                                    "modality"
+                                ],
+                                "properties": {
+                                    "nrc": {
+                                        "type": "string",
+                                        "maxLength": 5
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "modality": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Experiencia educativa actualizada exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Eliminar una experiencia educativa",
+                "operationId": "31a22bac09612f15965d2a5dbe8c50ad",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Experiencia educativa eliminada exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        },
+        "/api/educational-experiences/{id}/edit": {
+            "get": {
+                "summary": "Mostrar formulario para editar una experiencia educativa",
+                "operationId": "847989b4113da5f62f2b0933441e0ab1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna los detalles de la experiencia educativa seleccionada para su edición."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        },
+        "/api/educational-experiences/{educationalExperience}/groups": {
+            "get": {
+                "summary": "Mostrar todos los grupos de una experiencia educativa",
+                "operationId": "b5e4446b612bdd03080c5fdd0632a860",
+                "parameters": [
+                    {
+                        "name": "educationalExperience",
+                        "in": "path",
+                        "description": "ID de la experiencia educativa",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos los grupos de la experiencia educativa"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Crear un nuevo grupo en una experiencia educativa",
+                "operationId": "4992efc8b25236456681b587f2adcbe3",
+                "parameters": [
+                    {
+                        "name": "educationalExperience",
+                        "in": "path",
+                        "description": "ID de la experiencia educativa",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "Nombre del grupo",
+                                        "type": "string"
+                                    },
+                                    "shift": {
+                                        "description": "Turno del grupo",
+                                        "type": "string"
+                                    },
+                                    "period": {
+                                        "description": "Periodo del grupo",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Grupo creado exitosamente"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error"
+                    }
+                }
+            }
+        },
+        "/api/educational-experiences/{educationalExperience}/groups/create": {
+            "get": {
+                "summary": "Mostrar los detalles de la experiencia educativa para crear un grupo",
+                "operationId": "80cfbcd563de0ac06ae3e7d94d5740ce",
+                "parameters": [
+                    {
+                        "name": "educationalExperience",
+                        "in": "path",
+                        "description": "ID de la experiencia educativa",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalles de la experiencia educativa"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error"
+                    }
+                }
+            }
+        },
+        "/api/educational-experiences/{educationalExperience}/groups/{groupId}": {
+            "get": {
+                "summary": "Mostrar un grupo por su ID",
+                "operationId": "7c16f51e7d29761601cf7e70bdd519cd",
+                "parameters": [
+                    {
+                        "name": "educationalExperience",
+                        "in": "path",
+                        "description": "ID de la experiencia educativa",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "groupId",
+                        "in": "path",
+                        "description": "ID del grupo",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalles del grupo"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Actualizar un grupo",
+                "operationId": "11452bb48a3045dd84a7aa9fd0795d3b",
+                "parameters": [
+                    {
+                        "name": "educationalExperience",
+                        "in": "path",
+                        "description": "ID de la experiencia educativa",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "groupId",
+                        "in": "path",
+                        "description": "ID del grupo",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "Nombre del grupo",
+                                        "type": "string"
+                                    },
+                                    "shift": {
+                                        "description": "Turno del grupo",
+                                        "type": "string"
+                                    },
+                                    "period": {
+                                        "description": "Periodo del grupo",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Grupo actualizado exitosamente"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Eliminar un grupo",
+                "operationId": "ef61c07a3b21eec54da394cb79b4e657",
+                "parameters": [
+                    {
+                        "name": "educationalExperience",
+                        "in": "path",
+                        "description": "ID de la experiencia educativa",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "groupId",
+                        "in": "path",
+                        "description": "ID del grupo",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Grupo eliminado exitosamente"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error"
+                    }
+                }
+            }
+        },
+        "/api/educational-experiences/{educationalExperience}/groups/{groupId}/students": {
+            "get": {
+                "summary": "Obtener los estudiantes de un grupo",
+                "operationId": "6dea73df9abb169b29314a8865942610",
+                "parameters": [
+                    {
+                        "name": "educationalExperience",
+                        "in": "path",
+                        "description": "ID de la experiencia educativa",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "groupId",
+                        "in": "path",
+                        "description": "ID del grupo",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listado de estudiantes en el grupo"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error"
+                    }
+                }
+            }
+        },
+        "/api/users": {
+            "get": {
+                "summary": "Mostrar usuarios",
+                "operationId": "c457726701591d1183b53aa71fc13441",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos los usuarios."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            },
+            "post": {
+                "summary": "Crear un nuevo usuario",
+                "operationId": "592819a0265360b2014512d6dbfaf0e7",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "roleId",
+                                    "tuition",
+                                    "name",
+                                    "lastName",
+                                    "motherLastName",
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "roleId": {
+                                        "description": "ID del rol del usuario",
+                                        "type": "integer"
+                                    },
+                                    "tuition": {
+                                        "description": "Matrícula del usuario",
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "description": "Nombre del usuario",
+                                        "type": "string"
+                                    },
+                                    "lastName": {
+                                        "description": "Apellido paterno del usuario",
+                                        "type": "string"
+                                    },
+                                    "motherLastName": {
+                                        "description": "Apellido materno del usuario",
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "description": "Correo electrónico del usuario",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "Contraseña del usuario",
+                                        "type": "string"
+                                    },
+                                    "universityCareer": {
+                                        "description": "Carrera universitaria del usuario",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Usuario creado exitosamente.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Usuario dado de alta exitosamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        },
+        "/api/users/{userId}": {
+            "get": {
+                "summary": "Mostrar un usuario por su ID",
+                "operationId": "2fc03ba6d92e0712966a5ce4a7d9eaeb",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "ID del usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuario encontrado."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            },
+            "put": {
+                "summary": "Actualizar un usuario existente",
+                "operationId": "2af19474a22fcb71ca0c134728c7a07a",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "ID del usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "roleId",
+                                    "tuition",
+                                    "name",
+                                    "lastName",
+                                    "motherLastName",
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "roleId": {
+                                        "description": "ID del rol del usuario",
+                                        "type": "integer"
+                                    },
+                                    "tuition": {
+                                        "description": "Matrícula del usuario",
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "description": "Nombre del usuario",
+                                        "type": "string"
+                                    },
+                                    "lastName": {
+                                        "description": "Apellido paterno del usuario",
+                                        "type": "string"
+                                    },
+                                    "motherLastName": {
+                                        "description": "Apellido materno del usuario",
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "description": "Correo electrónico del usuario",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "Contraseña del usuario",
+                                        "type": "string"
+                                    },
+                                    "universityCareer": {
+                                        "description": "Carrera universitaria del usuario",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Usuario actualizado exitosamente.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Usuario editado exitosamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Eliminar un usuario",
+                "operationId": "76f92b9a1870022f8b5c1c8a899c8a44",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "ID del usuario a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuario eliminado exitosamente.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Se ha eliminado el usuario."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        }
+    }
+}

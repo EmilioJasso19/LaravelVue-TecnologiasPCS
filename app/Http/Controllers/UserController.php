@@ -8,10 +8,26 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
+/**
+ * @OA\Info(title="API Eplus v 0.0.1", version="1.0")
+ *
+ * @OA\Server(url="http://127.0.0.1:8000")
+ */
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *     path="/api/users",
+     *     summary="Mostrar usuarios",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Mostrar todos los usuarios."
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
      */
     public function index()
     {
@@ -28,7 +44,35 @@ class UserController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @OA\Post(
+     *     path="/api/users",
+     *     summary="Crear un nuevo usuario",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"roleId", "tuition", "name", "lastName", "motherLastName", "email", "password"},
+     *             @OA\Property(property="roleId", type="integer", description="ID del rol del usuario"),
+     *             @OA\Property(property="tuition", type="string", description="Matrícula del usuario"),
+     *             @OA\Property(property="name", type="string", description="Nombre del usuario"),
+     *             @OA\Property(property="lastName", type="string", description="Apellido paterno del usuario"),
+     *             @OA\Property(property="motherLastName", type="string", description="Apellido materno del usuario"),
+     *             @OA\Property(property="email", type="string", description="Correo electrónico del usuario"),
+     *             @OA\Property(property="password", type="string", description="Contraseña del usuario"),
+     *             @OA\Property(property="universityCareer", type="string", description="Carrera universitaria del usuario")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Usuario creado exitosamente.",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Usuario dado de alta exitosamente")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
      */
     public function store(Request $request)
     {
@@ -64,7 +108,25 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     *     path="/api/users/{userId}",
+     *     summary="Mostrar un usuario por su ID",
+     *     @OA\Parameter(
+     *         name="userId",
+     *         in="path",
+     *         required=true,
+     *         description="ID del usuario",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Usuario encontrado."
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
      */
     public function show( $userId)
     {
@@ -81,7 +143,42 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @OA\Put(
+     *     path="/api/users/{userId}",
+     *     summary="Actualizar un usuario existente",
+     *     @OA\Parameter(
+     *         name="userId",
+     *         in="path",
+     *         required=true,
+     *         description="ID del usuario",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"roleId", "tuition", "name", "lastName", "motherLastName", "email", "password"},
+     *             @OA\Property(property="roleId", type="integer", description="ID del rol del usuario"),
+     *             @OA\Property(property="tuition", type="string", description="Matrícula del usuario"),
+     *             @OA\Property(property="name", type="string", description="Nombre del usuario"),
+     *             @OA\Property(property="lastName", type="string", description="Apellido paterno del usuario"),
+     *             @OA\Property(property="motherLastName", type="string", description="Apellido materno del usuario"),
+     *             @OA\Property(property="email", type="string", description="Correo electrónico del usuario"),
+     *             @OA\Property(property="password", type="string", description="Contraseña del usuario"),
+     *             @OA\Property(property="universityCareer", type="string", description="Carrera universitaria del usuario")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Usuario actualizado exitosamente.",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Usuario editado exitosamente"),
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
      */
     public function update(Request $request, $userId)
     {
@@ -118,7 +215,28 @@ class UserController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     *     path="/api/users/{userId}",
+     *     summary="Eliminar un usuario",
+     *     @OA\Parameter(
+     *         name="userId",
+     *         in="path",
+     *         required=true,
+     *         description="ID del usuario a eliminar",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Usuario eliminado exitosamente.",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Se ha eliminado el usuario.")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
      */
     public function destroy($userId)
     {

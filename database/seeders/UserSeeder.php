@@ -147,6 +147,72 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('12345678'),
                 'university_career'=> null
             ],
+            [
+                'id' => 13,
+                'role_id' => 3,
+                'tuition' => 's22017054',
+                'name' => 'RAFAEL',
+                'last_name' => 'MERLIN',
+                'mother_last_name' => 'JUAN',
+                'email' => 'RAFAMONTO@gmail.com',
+                'password' => Hash::make('12345678'),
+                'university_career'=> null
+            ],
+            [
+                'id' => 14,
+                'role_id' => 3,
+                'tuition' => 's22017074',
+                'name' => 'JORGE',
+                'last_name' => 'BARRIOS',
+                'mother_last_name' => 'LAUREANI',
+                'email' => 'kreigsbote3@gmail.com',
+                'password' => Hash::make('12345678'),
+                'university_career'=> null
+            ],
+            [
+                'id' => 15,
+                'role_id' => 3,
+                'tuition' => 's22018074',
+                'name' => 'JORGE',
+                'last_name' => 'MATEU',
+                'mother_last_name' => 'ARELLANO',
+                'email' => 'jorgeee3@gmail.com',
+                'password' => Hash::make('12345678'),
+                'university_career'=> null
+            ],
+            [
+                'id' => 16,
+                'role_id' => 3,
+                'tuition' => 's22018073',
+                'name' => 'ROBERTO',
+                'last_name' => 'LAUREANI',
+                'mother_last_name' => 'ARELLANO',
+                'email' => 'robLau@gmail.com',
+                'password' => Hash::make('12345678'),
+                'university_career'=> null
+            ],
+            [
+                'id' => 17,
+                'role_id' => 3,
+                'tuition' => 's22018072',
+                'name' => 'ROBERTO',
+                'last_name' => 'HERNANDEZ',
+                'mother_last_name' => 'JIMENEZ',
+                'email' => 'robHer@gmail.com',
+                'password' => Hash::make('12345678'),
+                'university_career'=> null
+            ],
+            [
+                'id' => 18,
+                'role_id' => 3,
+                'tuition' => 's22018072',
+                'name' => 'JULIAN',
+                'last_name' => 'TOMATE',
+                'mother_last_name' => 'JIMENEZ',
+                'email' => 'juli@gmail.com',
+                'password' => Hash::make('12345678'),
+                'university_career'=> null
+            ],
 
 
         ]);

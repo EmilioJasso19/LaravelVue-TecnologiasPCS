@@ -25,6 +25,36 @@ class EnrollmentSeeder extends Seeder
                 'student_id' => 12,
                 'group_id' => 1
             ],
+            [
+                'id' => 3,
+                'student_id' => 13,
+                'group_id' => 2
+            ],
+            [
+                'id' => 4,
+                'student_id' => 14,
+                'group_id' => 1
+            ],
+            [
+                'id' => 5,
+                'student_id' => 15,
+                'group_id' => 1
+            ],
+            [
+                'id' => 6,
+                'student_id' => 16,
+                'group_id' => 1
+            ],
+            [
+                'id' => 7,
+                'student_id' => 17,
+                'group_id' => 1
+            ],
+            [
+                'id' => 8,
+                'student_id' => 18,
+                'group_id' => 1
+            ],
         ]);
     }
 }

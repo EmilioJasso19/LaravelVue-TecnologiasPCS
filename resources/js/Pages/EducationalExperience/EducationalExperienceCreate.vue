@@ -1,5 +1,5 @@
 <script setup>
-import { useForm } from '@inertiajs/vue3';
+import {useForm} from '@inertiajs/vue3';
 import InputLabel from '@/Components/InputLabel.vue';
 import TextInput from '@/Components/TextInput.vue';
 import InputError from '@/Components/InputError.vue';
@@ -26,10 +26,12 @@ const modalities = [
     { value: 'VIRTUAL', label: 'VIRTUAL' },
 ];
 
-// Función para enviar el formulario
 const submit = () => {
     form.post(route('educational-experiences.store'), {
-        onFinish: () => form.reset(), // Reinicia la descripción después del envío
+        onFinish: () => {
+            form.reset()
+            window.location.href = route('dashboard')
+        },
     });
 };
 </script>

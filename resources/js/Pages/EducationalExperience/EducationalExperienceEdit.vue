@@ -46,7 +46,10 @@ export default{
 
         const submit = () => {
             form.patch(`/api/educational-experiences/${props.educationalExperience.id}`, {
-                onFinish: () => form.reset(),
+                onFinish: () => {
+                    form.reset()
+                    window.location.href = route('dashboard')
+                },
             });
         };
 

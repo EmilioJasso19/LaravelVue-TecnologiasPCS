@@ -22,7 +22,7 @@ export default {
   },
   props: {
     auth: Object,
-    educational_experience: Object, // Expect the educationalExperience to be passed as a prop
+    educational_experience: Object,
   },
   setup(props) {
     const form = useForm({
@@ -39,7 +39,12 @@ export default {
 
     const submit = () => {
         form.post(route('educational-experiences.groups.store', { educational_experience: props.educational_experience }), {
-            onFinish: () => form.reset(),
+            onFinish: () => {
+                form.reset()
+                window.location.href = route('groups.list', {
+                    educationalExperience: props.educational_experience.id
+                })
+            },
         });
     };
 
